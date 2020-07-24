@@ -41,9 +41,9 @@ class Airplane {
 */
 
 class Person {
-  constructor(args){
-    this.name = args.name;
-    this.age = args.age;
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
     this.stomach = [];
   }
   eat(food) {
@@ -57,12 +57,12 @@ class Person {
   poop(){
     this.stomach = [];
   }
+  toString(){
+    return `${this.name} ${this.age}`
+  }
 }
 
-const austin = new Person({
-  name: 'Austin',
-  age: '23',
-});
+const austin = new Person('Austin', 23);
 
 console.log(austin.name)
 console.log(austin.age)
@@ -96,9 +96,9 @@ austin.eat('spinach');
 */
 
 class Car {
-  constructor(args){
-    this.model = args.model;
-    this.milesPerGallon = args.milesPerGallon;
+  constructor(model, milesPerGallon){
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
     this.tank = 0;
     this.odometer = 0;
   }
@@ -112,22 +112,23 @@ class Car {
     if (this.tank >= 0){
       return `odometer: ${this.odometer} tank: ${this.tank}`
     } else {
-      for (let i = this.tank; i < 0; i++){
-        this.odometer -= this.milesPerGallon;
-      }
-      return `I ran out of fuel at odometer value: ${this.odometer}`
+      console.log(this.tank);
+      console.log(this.odometer);
+      // for (let i = this.tank; i < 0; i++){
+      //   this.odometer -= this.milesPerGallon;
+      // }
+      this.odometer += this.tank * this.milesPerGallon;
+      this.tank = 0;
+      return `I ran out of fuel at odometer value: ${this.odometer}`;
     } 
   }
 }
 
-const accord = new Car({
-  model: 'Honda Accord',
-  milesPerGallon: 30
-});
+const accord = new Car('Honda Accord', 30);
 
-console.log(accord)
+console.log(accord);
 console.log(accord.fill(5));
-console.log(accord.drive(300));
+console.log(accord.drive(200));
 
 /*
   TASK 3

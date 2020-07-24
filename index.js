@@ -41,8 +41,45 @@ class Airplane {
 */
 
 class Person {
-
+  constructor(args){
+    this.name = args.name;
+    this.age = args.age;
+    this.stomach = [];
+  }
+  eat(food) {
+    if (this.stomach.length < 10){
+      this.stomach.push(food);
+      return console.log(this.stomach);
+    } else {
+      return console.log("Stomach is full");
+    }
+  }
+  poop(){
+    this.stomach = [];
+  }
 }
+
+const austin = new Person({
+  name: 'Austin',
+  age: '23',
+});
+
+console.log(austin.name)
+console.log(austin.age)
+austin.eat('pizza');
+austin.eat('pizza');
+austin.eat('pizza');
+austin.eat('pizza');
+austin.eat('pizza');
+austin.eat('pizza');
+austin.eat('pizza');
+austin.eat('pizza');
+austin.eat('pizza');
+austin.eat('pizza');
+austin.eat('pizza');
+austin.poop();
+austin.eat('spinach');
+
 
 /*
   TASK 2
@@ -59,8 +96,38 @@ class Person {
 */
 
 class Car {
-
+  constructor(args){
+    this.model = args.model;
+    this.milesPerGallon = args.milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  fill(gallons){
+    this.tank += gallons;
+    return console.log(`tank: ${this.tank}`);
+  }
+  drive(distance){
+    this.odometer += distance;
+    this.tank -= distance / this.milesPerGallon;
+    if (this.tank >= 0){
+      return `odometer: ${this.odometer} tank: ${this.tank}`
+    } else {
+      for (let i = this.tank; i < 0; i++){
+        this.odometer -= this.milesPerGallon;
+      }
+      return `I ran out of fuel at odometer value: ${this.odometer}`
+    } 
+  }
 }
+
+const accord = new Car({
+  model: 'Honda Accord',
+  milesPerGallon: 30
+});
+
+console.log(accord)
+console.log(accord.fill(5));
+console.log(accord.drive(300));
 
 /*
   TASK 3
@@ -72,11 +139,26 @@ class Car {
     - Its constructor should initialize `name`, `age` and `location` properties on the instance.
     - Instances of Lambdasian should be able to `.speak()`:
         + Speaking should return a phrase `Hello my name is {name}, I am from {location}`.
-        + {name} and {location} of course come from the instance's own properties.
+        + {name} and {locatio n} of course come from the instance's own properties.
 */
 class Lambdasian {
-
+  constructor(args){
+    this.name = args.name;
+    this.age = args.age;
+    this.location = args.location;
+  }
+  speak(){
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
 }
+
+const karymé = new Lambdasian({
+  name: 'Karymé',
+  age: 23,
+  location: 'Nashville'
+});
+console.log(karymé);
+console.log(karymé.speak());
 
 /*
   TASK 4
